@@ -1,4 +1,5 @@
 import productImg from "../assets/img/ProductImg.svg";
+import ProductBody from "./ProductBody";
 function Products() {
   // console.log("authenticated :>> ", authenticated);
   return (
@@ -6,14 +7,13 @@ function Products() {
       <div className="banner">
         <div className="leftSide">
           <h3>FreshenUp Your Looks with ECOM</h3>
-          <button className="btn-black">Shop now</button>
+          <button className="btn-black big">Shop now</button>
         </div>
         <div className="rightSide">
-          <div>
-            <img src={productImg} alt="img" />
-          </div>
+          <img src={productImg} alt="img" />
         </div>
       </div>
+      <ProductBody />
     </div>
   );
 }

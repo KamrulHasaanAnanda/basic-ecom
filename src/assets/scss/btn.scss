@@ -7,6 +7,9 @@
   font-size: 18px;
   padding: 10px;
   color: #ffffff;
+  &.big {
+    padding: 5px 26px;
+  }
 }
 
 .btn-black {
@@ -19,4 +22,7 @@
   font-size: 24px;
   line-height: 30px;
   color: #ffffff;
+  &.big {
+    padding: 7px 40px;
+  }
 }
