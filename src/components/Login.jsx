@@ -8,7 +8,7 @@ import {
 } from "../redux/action/AuthAction";
 import AuthServices from "../services/Authservices";
 import { toastifyAlertError, toastifyAlertSuccess } from "../utils/alerts";
-import { setToken } from "../utils/functions";
+import { setToken, setUser } from "../utils/functions";
 function Login() {
   const navigate = useNavigate();
   let dispatch = useDispatch();
@@ -33,6 +33,7 @@ function Login() {
       setToken(res.data.accessToken);
       dispatch(authenticatedFunction(true));
       dispatch(setUserFunction(res.data.user));
+      setUser(JSON.stringify(res.data.user));
       navigate("/");
     } else if (res.status === 400) toastifyAlertError(res.data, "top-center");
   };

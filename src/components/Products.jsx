@@ -1,8 +1,6 @@
-import { useSelector } from "react-redux";
 import productImg from "../assets/img/ProductImg.svg";
 function Products() {
-  const { authenticated } = useSelector((state) => state.authValue);
-  console.log("authenticated :>> ", authenticated);
+  // console.log("authenticated :>> ", authenticated);
   return (
     <div className="productDiv">
       <div className="banner">

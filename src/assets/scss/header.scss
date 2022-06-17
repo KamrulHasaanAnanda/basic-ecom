@@ -24,4 +24,21 @@
       margin: 0 10px;
     }
   }
+  .btn-head {
+    display: flex;
+    column-gap: 20px;
+    .cart {
+      align-self: center;
+      img {
+        width: 40px;
+      }
+    }
+    .user {
+      align-self: center;
+      background: #e91e63;
+      padding: 2px 15px;
+      color: white;
+      border-radius: 50%;
+    }
+  }
 }

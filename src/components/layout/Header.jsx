@@ -1,6 +1,15 @@
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
+import cart from "../../assets/img/Cart.svg";
+import { getUser } from "../../utils/functions";
+
 function Header() {
+  const { authenticated } = useSelector((state) => state.authValue);
+
+  let user = JSON.parse(getUser());
+  console.log("user :>> ", user);
+
   return (
     <div className="header">
       <div className="logo">
@@ -20,9 +29,20 @@ function Header() {
         </ul>
       </div>
       <div className="btn-head">
-        <Link to={"/login"}>
-          <button className="btn-black">Login</button>
-        </Link>
+        {authenticated ? (
+          <>
+            <div className="cart">
+              <img src={cart} alt="" />
+            </div>
+            <div className="user">
+              <h3>{user.email.charAt(0)}</h3>
+            </div>
+          </>
+        ) : (
+          <Link to={"/login"}>
+            <button className="btn-black">Login</button>
+          </Link>
+        )}
       </div>
     </div>
   );
