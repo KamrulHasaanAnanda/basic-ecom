@@ -17,6 +17,9 @@ function ProductBody() {
     setvalueNow("search");
   };
 
+  let sortFunc = (value) => {
+    setvalueNow(value);
+  };
   let value = (searchBy, value) => {
     let val = searchBy.includes(value.toUpperCase());
     return val;
@@ -87,13 +90,17 @@ function ProductBody() {
               Sort by
             </button>
             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li>
+              <li onClick={() => sortFunc("name")}>
                 <a className="dropdown-item" href="#">
                   Name
                 </a>
               </li>
               <li>
-                <a className="dropdown-item" href="#">
+                <a
+                  className="dropdown-item"
+                  onClick={() => sortFunc("name")}
+                  href="#"
+                >
                   Price
                 </a>
               </li>
