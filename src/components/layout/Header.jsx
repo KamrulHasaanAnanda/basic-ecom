@@ -8,7 +8,7 @@ function Header() {
   const { authenticated } = useSelector((state) => state.authValue);
 
   let user = JSON.parse(getUser());
-  console.log("user :>> ", user);
+  // console.log("user :>> ", user);
 
   return (
     <div className="header">

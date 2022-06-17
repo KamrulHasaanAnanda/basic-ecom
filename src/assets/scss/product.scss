@@ -32,6 +32,16 @@
       display: flex;
       justify-content: space-between;
       margin-top: 20px;
+      .input-search {
+        align-self: center;
+        input {
+          width: 365px;
+          padding: 10px;
+          border-radius: 5px;
+          font-size: 15px;
+          font-weight: bold;
+        }
+      }
       h3 {
         font-family: "Lora";
         font-style: normal;
