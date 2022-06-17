@@ -1,0 +1,27 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  //   padding: 20px;
+  .logo {
+    h3 {
+      font-family: "Lexend";
+      font-weight: bolder;
+      font-size: 35px;
+      color: #000000;
+    }
+  }
+  .links {
+    ul {
+      display: flex;
+      list-style-type: none;
+    }
+    li {
+      font-family: "Lexend";
+      font-style: normal;
+      font-weight: 500;
+      font-size: 24px;
+      color: #000000;
+      margin: 0 10px;
+    }
+  }
+}

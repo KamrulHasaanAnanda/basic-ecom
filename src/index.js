@@ -12,7 +12,7 @@ axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
 axios.interceptors.request.use((config) => {
 
   if(navigator.onLine){
-    config.baseURL = "http://abedokbackend.spinnertechltd.com/api/";
+    config.baseURL = "http://localhost:4000/";
 
    
     config.withCredentials = true;
