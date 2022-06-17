@@ -92,3 +92,51 @@
     }
   }
 }
+
+.single-product {
+  display: flex;
+  column-gap: 20px;
+  .image {
+    width: 500px;
+    img {
+      max-width: 100%;
+    }
+  }
+  .texts {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    h3 {
+      font-family: "Lora";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 32px;
+      line-height: 56px;
+      text-transform: capitalize;
+      color: #000000;
+    }
+    h4 {
+      font-family: "Lora";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 25px;
+      line-height: 50px;
+      text-transform: capitalize;
+      color: #000000;
+    }
+    h5 {
+      font-family: "Lora";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 22px;
+      line-height: 22px;
+      text-transform: capitalize;
+      color: #000000;
+    }
+    span {
+      font-size: 20px;
+      font-weight: bold;
+      color: #e91e63;
+    }
+  }
+}

@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LoginPage from "../page/LoginPage";
 import ProductPage from "../page/ProductPage";
 import RegisterPage from "../page/RegisterPage";
+import SingleProductPage from "../page/SingleProductPage";
 import {
   authenticatedFunction,
   loadingFunction,
@@ -33,6 +34,7 @@ function Router() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/" element={<ProductPage />} />
+        <Route path="/:id" element={<SingleProductPage />} />
       </Routes>
     </BrowserRouter>
   );

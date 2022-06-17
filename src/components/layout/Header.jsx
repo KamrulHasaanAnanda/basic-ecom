@@ -17,10 +17,10 @@ function Header() {
       </div>
       <div className="links">
         <ul>
-          <Link to={"/home"}>
+          <Link to={"/"}>
             <li>Home</li>
           </Link>
-          <Link to={"/product"}>
+          <Link to={"/"}>
             <li>Product</li>
           </Link>
           <Link to={"/about-us"}>

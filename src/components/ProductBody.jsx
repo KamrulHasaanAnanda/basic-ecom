@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { getAllProductFunction } from "../redux/action/ProductAction";
+
 function ProductBody() {
   const { allProducts } = useSelector((state) => state.productValue);
   let dispatch = useDispatch();
-  //   console.log("allProducts :>> ", allProducts);
   useEffect(() => {
     dispatch(getAllProductFunction());
   }, [dispatch]);
@@ -22,7 +23,9 @@ function ProductBody() {
           <h4>Price{p.price}</h4>
         </div>
         <div className="my-4 btns">
-          <button className="btn-blue big">Show</button>
+          <Link to={`${p.id}`}>
+            <button className="btn-blue big">Show</button>
+          </Link>
           <button className="btn-black">Add to cart</button>
         </div>
       </div>
