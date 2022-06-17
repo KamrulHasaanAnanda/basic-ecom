@@ -1,4 +1,4 @@
-const authToken = "auth_token";
+const authToken = "ecom_auth_token";
 export const getToken = () => window.localStorage.getItem(authToken);
 
 export const setToken = (token) => {

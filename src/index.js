@@ -1,5 +1,4 @@
 import axios from "axios";
-import React from "react";
 import ReactDOM from "react-dom/client";
 import { ToastContainer, Zoom } from "react-toastify";
 import App from "./App";
@@ -27,8 +26,8 @@ axios.interceptors.request.use((config) => {
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
-  <React.StrictMode>
+  <>
     <App />
     <ToastContainer transition={Zoom}/>
-  </React.StrictMode>
+  </>
 );

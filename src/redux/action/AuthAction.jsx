@@ -1,4 +1,4 @@
-import { AuthSlices } from "../slices/AuthSlice";
+import { AuthSlices } from "../slice/AuthSlice";
 
 const { actions: slice } = AuthSlices;
 

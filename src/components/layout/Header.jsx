@@ -20,7 +20,9 @@ function Header() {
         </ul>
       </div>
       <div className="btn-head">
-        <button className="btn-black">Login</button>
+        <Link to={"/login"}>
+          <button className="btn-black">Login</button>
+        </Link>
       </div>
     </div>
   );

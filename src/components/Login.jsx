@@ -1,7 +1,17 @@
 import { useReducer } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import loginImg from "../assets/img/LoginSide.svg";
+import {
+  authenticatedFunction,
+  setUserFunction,
+} from "../redux/action/AuthAction";
 import AuthServices from "../services/Authservices";
+import { toastifyAlertError, toastifyAlertSuccess } from "../utils/alerts";
+import { setToken } from "../utils/functions";
 function Login() {
+  const navigate = useNavigate();
+  let dispatch = useDispatch();
   const [state, setState] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
     {
@@ -17,8 +27,14 @@ function Login() {
   let inputSubmit = async (e) => {
     e.preventDefault();
     let res = await AuthServices.login(state);
-
-    console.log("res :>> ", res);
+    // console.log("res", res);
+    if (res.status === 200) {
+      toastifyAlertSuccess("Successfully logged in", "top-center");
+      setToken(res.data.accessToken);
+      dispatch(authenticatedFunction(true));
+      dispatch(setUserFunction(res.data.user));
+      navigate("/");
+    } else if (res.status === 400) toastifyAlertError(res.data, "top-center");
   };
   return (
     <div className="login">

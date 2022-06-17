@@ -1,9 +1,11 @@
 import { useReducer } from "react";
+import { useNavigate } from "react-router-dom";
 import loginImg from "../assets/img/RegisterSide.svg";
 import AuthServices from "../services/Authservices";
 import { toastifyAlertError, toastifyAlertSuccess } from "../utils/alerts";
 
 function Register() {
+  const navigate = useNavigate();
   const [state, setState] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
     {
@@ -23,11 +25,9 @@ function Register() {
       let res = await AuthServices.register(state);
       if (res.status === 201) {
         toastifyAlertSuccess("Registration complete", "top-center");
+        navigate("/login");
       } else if (res.status === 400) toastifyAlertError(res.data, "top-center");
-      console.log("res :>> ", res);
     } else {
-      console.log("e :>> ", e);
-
       toastifyAlertError("Passwords don't match", "top-center");
     }
   };

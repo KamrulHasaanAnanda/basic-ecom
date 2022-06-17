@@ -10,6 +10,18 @@
       "password": "$2a$10$Yr7odz4VYJr3t0oKQO5iouF/IDV7dUmK46xDiiUIu1F6Fe62qxIym",
       "confirm_password": "12345678",
       "id": 2
+    },
+    {
+      "email": "anaada2015@gmail.com",
+      "password": "$2a$10$OhYMpcBOZ8NrFSR5e3A0IeESyto5qCqDNMpV/ILvE96hmj2RZ8sHe",
+      "confirm_password": "12345678",
+      "id": 3
+    },
+    {
+      "email": "anaada@gmail.com",
+      "password": "$2a$10$BV5JklTNWLAZWzpczW8TIO5B0HHzzeEM8/H9x8i53whCIWvugjpp6",
+      "confirm_password": "12345678",
+      "id": 4
     }
   ],
   "products": [
