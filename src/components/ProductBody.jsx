@@ -6,36 +6,23 @@ import { getAllProductFunction } from "../redux/action/ProductAction";
 function ProductBody() {
   const { allProducts } = useSelector((state) => state.productValue);
   const [search, setsearch] = useState();
+  const [valueNow, setvalueNow] = useState();
   let dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllProductFunction());
   }, [dispatch]);
 
-  let debounce = (fn, delay) => {
-    let timeout;
-    // console.log("fn :>> ", fn);
-    return function () {
-      if (timeout) {
-        clearTimeout(timeout);
-      }
-      timeout = setTimeout(() => {
-        fn();
-      }, delay);
-    };
-  };
-
   let searchFilter = (e) => {
     setsearch(e.target.value);
+    setvalueNow("search");
   };
-  //   let searchValue = (function searchValue() {
-  //     debounce(function () {
-  //       console.log("hi :>> ");
-  //       // return console.log("e.target.value :>> ", e.target.value);""
-  //     }, 500);
-  //   })();
 
+  let value = (searchBy, value) => {
+    let val = searchBy.includes(value.toUpperCase());
+    return val;
+  };
   let products = "";
-  if (allProducts.length > 0 && !search) {
+  if (allProducts.length > 0 && !valueNow) {
     products = allProducts.map((p) => (
       <div className="single" key={`${p.id}`}>
         <div className="image">
@@ -54,9 +41,9 @@ function ProductBody() {
         </div>
       </div>
     ));
-  } else if (allProducts.length > 0 && search) {
+  } else if (allProducts.length > 0 && valueNow) {
     products = allProducts
-      .filter((p) => p.name.toUpperCase().includes(search.toUpperCase()))
+      .filter((p) => value(p.name.toUpperCase(), search.toUpperCase()))
       .map((p) => (
         <div className="single" key={`${p.id}`}>
           <div className="image">
