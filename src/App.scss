@@ -1,6 +1,6 @@
 html,
 body {
-  height: 100vh;
+  //   height: 100vh;
   background-color: #f5f8fa;
   font-family: "Poppins" !important;
 }
@@ -9,3 +9,6 @@ a {
   color: none;
   text-decoration: none;
 }
+
+@import "./assets/scss/login.scss";
+@import "./assets/scss/btn.scss";
