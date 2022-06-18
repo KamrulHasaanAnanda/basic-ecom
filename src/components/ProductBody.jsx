@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { getAllProductFunction } from "../redux/action/ProductAction";
+import ProductsShow from "./products/ProductsShow";
+import ProductSorting from "./ProductSorting";
 
 function ProductBody() {
   const { allProducts } = useSelector((state) => state.productValue);
@@ -17,54 +18,17 @@ function ProductBody() {
     setvalueNow("search");
   };
 
-  let sortFunc = (value) => {
-    setvalueNow(value);
-  };
   let value = (searchBy, value) => {
     let val = searchBy.includes(value.toUpperCase());
     return val;
   };
   let products = "";
   if (allProducts.length > 0 && !valueNow) {
-    products = allProducts.map((p) => (
-      <div className="single" key={`${p.id}`}>
-        <div className="image">
-          <img src={p.image} alt="" />
-        </div>
-        <div className="texts">
-          <h5>{p.name}</h5>
-          <h4>Category:{p.category}</h4>
-          <h4>Price{p.price}</h4>
-        </div>
-        <div className="my-4 btns">
-          <Link to={`${p.id}`}>
-            <button className="btn-blue big">Show</button>
-          </Link>
-          <button className="btn-black">Add to cart</button>
-        </div>
-      </div>
-    ));
+    products = allProducts.map((p) => <ProductsShow p={p} />);
   } else if (allProducts.length > 0 && valueNow) {
     products = allProducts
       .filter((p) => value(p.name.toUpperCase(), search.toUpperCase()))
-      .map((p) => (
-        <div className="single" key={`${p.id}`}>
-          <div className="image">
-            <img src={p.image} alt="" />
-          </div>
-          <div className="texts">
-            <h5>{p.name}</h5>
-            <h4>Category:{p.category}</h4>
-            <h4>Price{p.price}</h4>
-          </div>
-          <div className="my-4 btns">
-            <Link to={`${p.id}`}>
-              <button className="btn-blue big">Show</button>
-            </Link>
-            <button className="btn-black">Add to cart</button>
-          </div>
-        </div>
-      ));
+      .map((p) => <ProductsShow p={p} />);
   }
   return (
     <div className="product-body">
@@ -78,63 +42,7 @@ function ProductBody() {
             onChange={(e) => searchFilter(e)}
           />
         </div>
-        <div className="sortings">
-          <div className="dropdown">
-            <button
-              className="btn btn-secondary dropdown-toggle"
-              type="button"
-              id="dropdownMenuButton1"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Sort by
-            </button>
-            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li onClick={() => sortFunc("name")}>
-                <a className="dropdown-item" href="#">
-                  Name
-                </a>
-              </li>
-              <li>
-                <a
-                  className="dropdown-item"
-                  onClick={() => sortFunc("name")}
-                  href="#"
-                >
-                  Price
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div className="dropdown">
-            <button
-              className="btn btn-secondary dropdown-toggle"
-              type="button"
-              id="dropdownMenuButton1"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Filter by Category
-            </button>
-            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li>
-                <a className="dropdown-item" href="#">
-                  Action
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" href="#">
-                  Another action
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" href="#">
-                  Something else here
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
+        <ProductSorting />
       </div>
       <div className="products-show">{products}</div>
     </div>
