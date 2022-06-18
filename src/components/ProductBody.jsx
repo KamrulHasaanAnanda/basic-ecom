@@ -5,14 +5,20 @@ import ProductsShow from "./products/ProductsShow";
 import ProductSorting from "./ProductSorting";
 
 function ProductBody() {
-  const { allProducts } = useSelector((state) => state.productValue);
+  const { allProducts, categorySort } = useSelector(
+    (state) => state.productValue
+  );
+
   const [search, setsearch] = useState();
-  const [valueNow, setvalueNow] = useState();
+  const [valueNow, setvalueNow] = useState([]);
   let dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllProductFunction());
-  }, [dispatch]);
-
+    if (categorySort) {
+      setvalueNow(categorySort);
+    }
+  }, [dispatch, categorySort]);
+  console.log("valueNow :>> ", valueNow);
   let searchFilter = (e) => {
     setsearch(e.target.value);
     setvalueNow("search");
@@ -23,12 +29,29 @@ function ProductBody() {
     return val;
   };
   let products = "";
-  if (allProducts.length > 0 && !valueNow) {
-    products = allProducts.map((p) => <ProductsShow p={p} />);
-  } else if (allProducts.length > 0 && valueNow) {
+
+  if ((allProducts.length > 0 && !valueNow.length) || categorySort === "no") {
+    products = allProducts.map((p) => (
+      <div className="single" key={`${p.id}`}>
+        <ProductsShow p={p} />
+      </div>
+    ));
+  } else if (allProducts.length > 0 && valueNow === "search") {
     products = allProducts
       .filter((p) => value(p.name.toUpperCase(), search.toUpperCase()))
-      .map((p) => <ProductsShow p={p} />);
+      .map((p) => (
+        <div className="single" key={`${p.id}`}>
+          <ProductsShow p={p} />
+        </div>
+      ));
+  } else if (allProducts.length > 0 && valueNow !== "search" && categorySort) {
+    products = allProducts
+      .filter((p) => p.category === categorySort)
+      .map((p) => (
+        <div className="single" key={`${p.id}`}>
+          <ProductsShow p={p} />
+        </div>
+      ));
   }
   return (
     <div className="product-body">
@@ -42,7 +65,7 @@ function ProductBody() {
             onChange={(e) => searchFilter(e)}
           />
         </div>
-        <ProductSorting />
+        <ProductSorting allProducts={allProducts} />
       </div>
       <div className="products-show">{products}</div>
     </div>

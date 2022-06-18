@@ -1,0 +1,47 @@
+@media all and (max-width: 1200px) {
+  .productDiv .product-body .products-show .single {
+    flex-basis: 45%;
+  }
+}
+@media all and (max-width: 992px) {
+  .login .loginInputs {
+    flex-basis: 100%;
+    padding: 0px 20px;
+  }
+  .loginImgDiv {
+    display: none;
+  }
+  .productDiv .product-body .products-show .single {
+    flex-basis: 100%;
+  }
+  .productDiv .banner .leftSide h3 {
+    font-size: 45px;
+    line-height: 65px;
+  }
+  .productDiv .product-body .heading {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .productDiv .product-body .heading h3 {
+    line-height: 75px;
+  }
+
+  .productDiv .product-body .heading .input-search {
+    width: 100%;
+  }
+  .productDiv .product-body .heading .input-search input {
+    width: 100%;
+  }
+  .productDiv .product-body .heading .sortings {
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+    .dropdown {
+      margin-bottom: 25px;
+      width: 50%;
+      button {
+        width: 100%;
+      }
+    }
+  }
+}

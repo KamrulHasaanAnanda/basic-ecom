@@ -12,3 +12,12 @@ export const getSingleProductFunction = (id) => async (dispatch) => {
   let res = await ProductServices.single(id);
   dispatch(slice.singleProductsData(res));
 };
+
+export const getCartValue = (data) => (dispatch) => {
+  // console.log("data :>> ", data);
+  dispatch(slice.cartData(data));
+};
+export const getCatogoryValue = (data) => (dispatch) => {
+  // console.log("data :>> ", data);
+  dispatch(slice.cartShortData(data));
+};
