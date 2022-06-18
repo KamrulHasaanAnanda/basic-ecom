@@ -21,3 +21,8 @@ export const getCatogoryValue = (data) => (dispatch) => {
   // console.log("data :>> ", data);
   dispatch(slice.cartShortData(data));
 };
+
+export const getProductValue = (data) => (dispatch) => {
+  // console.log("data :>> ", data);
+  dispatch(slice.priceShortData(data));
+};

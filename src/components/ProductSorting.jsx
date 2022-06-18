@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getCatogoryValue } from "../redux/action/ProductAction";
+import {
+  getCatogoryValue,
+  getProductValue,
+} from "../redux/action/ProductAction";
 
 function ProductSorting({ allProducts }) {
   const [valueNow, setvalueNow] = useState();
@@ -9,6 +12,11 @@ function ProductSorting({ allProducts }) {
   // console.log("allProducts :>> ", allProducts);
   let sortFunc = (value) => {
     setvalueNow(value);
+  };
+
+  let sortByCat = (value) => {
+    dispatch(getCatogoryValue(value));
+    dispatch(getProductValue([]));
   };
   let category = "";
   let catValue = [];
@@ -19,11 +27,12 @@ function ProductSorting({ allProducts }) {
   }
   if (catValue.length > 0) {
     category = [...new Set(catValue)].map((p) => (
-      <li key={`${p}`} onClick={() => dispatch(getCatogoryValue(p))}>
+      <li key={`${p}`} onClick={() => sortByCat(p)}>
         <a className="dropdown-item">{p}</a>
       </li>
     ));
   }
+
   // console.log("catValue :>> ", [...new Set(catValue)]);
 
   return (
@@ -42,8 +51,7 @@ function ProductSorting({ allProducts }) {
           <li>
             <a
               className="dropdown-item"
-              onClick={() => sortFunc("PriceA")}
-              href="#"
+              onClick={() => dispatch(getProductValue("Accending"))}
             >
               Price(Accending)
             </a>
@@ -51,8 +59,7 @@ function ProductSorting({ allProducts }) {
           <li>
             <a
               className="dropdown-item"
-              onClick={() => sortFunc("PriceD")}
-              href="#"
+              onClick={() => dispatch(getProductValue("Descending"))}
             >
               Price(Descending )
             </a>
@@ -70,14 +77,7 @@ function ProductSorting({ allProducts }) {
           Filter by Category
         </button>
         <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li>
-            <a
-              className="dropdown-item"
-              onClick={() => dispatch(getCatogoryValue("no"))}
-            >
-              No category
-            </a>
-          </li>
+          <li></li>
           {category}
         </ul>
       </div>

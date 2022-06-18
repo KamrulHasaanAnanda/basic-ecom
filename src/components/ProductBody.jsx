@@ -5,20 +5,24 @@ import ProductsShow from "./products/ProductsShow";
 import ProductSorting from "./ProductSorting";
 
 function ProductBody() {
-  const { allProducts, categorySort } = useSelector(
+  const { allProducts, categorySort, priceSort } = useSelector(
     (state) => state.productValue
   );
-
   const [search, setsearch] = useState();
+  // console.log("search :>> ", search);
   const [valueNow, setvalueNow] = useState([]);
+
   let dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllProductFunction());
     if (categorySort) {
       setvalueNow(categorySort);
     }
-  }, [dispatch, categorySort]);
-  console.log("valueNow :>> ", valueNow);
+    if (priceSort) {
+      setsearch();
+    }
+  }, [dispatch, categorySort, priceSort]);
+  // console.log("valueNow :>> ", valueNow);
   let searchFilter = (e) => {
     setsearch(e.target.value);
     setvalueNow("search");
@@ -30,7 +34,11 @@ function ProductBody() {
   };
   let products = "";
 
-  if ((allProducts.length > 0 && !valueNow.length) || categorySort === "no") {
+  if (
+    (allProducts.length > 0 && !valueNow.length && !priceSort.length) ||
+    categorySort === "no"
+  ) {
+    console.log(" :>dsfs> ");
     products = allProducts.map((p) => (
       <div className="single" key={`${p.id}`}>
         <ProductsShow p={p} />
@@ -44,6 +52,28 @@ function ProductBody() {
           <ProductsShow p={p} />
         </div>
       ));
+  } else if (
+    (allProducts.length > 0 && priceSort === "Accending") ||
+    valueNow === "search"
+  ) {
+    let p = [...allProducts];
+    let prods = p.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+    products = prods.map((p) => (
+      <div className="single" key={`${p.id}`}>
+        <ProductsShow p={p} />
+      </div>
+    ));
+  } else if (
+    (allProducts.length > 0 && priceSort === "Descending") ||
+    valueNow === "search"
+  ) {
+    let p = [...allProducts];
+    let prods = p.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+    products = prods.map((p) => (
+      <div className="single" key={`${p.id}`}>
+        <ProductsShow p={p} />
+      </div>
+    ));
   } else if (allProducts.length > 0 && valueNow !== "search" && categorySort) {
     products = allProducts
       .filter((p) => p.category === categorySort)
@@ -53,6 +83,7 @@ function ProductBody() {
         </div>
       ));
   }
+
   return (
     <div className="product-body">
       <div className="heading">

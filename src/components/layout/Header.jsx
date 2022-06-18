@@ -70,8 +70,8 @@ function Header() {
           <Link to={"/"}>
             <li>Product</li>
           </Link>
-          <Link to={"/about-us"}>
-            <li>About us</li>
+          <Link to={"/"}>
+            <li>About</li>
           </Link>
         </ul>
       </div>

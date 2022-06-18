@@ -1,10 +1,11 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getCartValue } from "../../redux/action/ProductAction";
 import { toastifyAlertSuccess } from "../../utils/alerts";
 import { getCart, setCart } from "../../utils/functions";
 
 function ProductsShow({ p }) {
+  const { authenticated } = useSelector((state) => state.authValue);
   let dispatch = useDispatch();
   let addToCart = (product) => {
     let carts = getCart() || [];
@@ -49,9 +50,15 @@ function ProductsShow({ p }) {
         <Link to={`${p.id}`}>
           <button className="btn-blue big">Show</button>
         </Link>
-        <button className="btn-black" onClick={() => addToCart(p)}>
-          Add to cart
-        </button>
+        {authenticated ? (
+          <button className="btn-black" onClick={() => addToCart(p)}>
+            Add to cart
+          </button>
+        ) : (
+          <Link to={"/login"}>
+            <button className="btn-black">Add to cart</button>
+          </Link>
+        )}
       </div>
     </>
   );

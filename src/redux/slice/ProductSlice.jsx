@@ -8,6 +8,7 @@ const initialState = {
   allProducts: [],
   cartValue: 0,
   categorySort: [],
+  priceSort: [],
 };
 
 export const ProductSlices = createSlice({
@@ -26,10 +27,18 @@ export const ProductSlices = createSlice({
     cartShortData: (state, { payload }) => {
       state.categorySort = payload;
     },
+    priceShortData: (state, { payload }) => {
+      state.priceSort = payload;
+    },
   },
 });
 
-export const { allProductsData, singleProductsData, cartData, cartShortData } =
-  ProductSlices.actions;
+export const {
+  allProductsData,
+  singleProductsData,
+  cartData,
+  cartShortData,
+  priceShortData,
+} = ProductSlices.actions;
 
 export default ProductSlices.reducer;
